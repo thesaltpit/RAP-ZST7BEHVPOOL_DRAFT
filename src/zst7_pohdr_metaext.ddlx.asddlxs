@@ -1,0 +1,80 @@
+@Metadata.layer: #CORE
+
+@Search.searchable: true
+annotate view ZST7_POHDR_ROOT with
+{
+
+  //Added tabs Accounting Header & Line items with the below options
+  @UI.facet: [
+  {
+    id:'HeaderInfo',
+    type: #COLLECTION,
+    label: 'Purchase Order Header',
+    purpose: #STANDARD
+  },
+
+  {
+    id:'DocumentDetails',
+    type: #FIELDGROUP_REFERENCE,
+    parentId: 'HeaderInfo',
+    purpose: #STANDARD,
+    targetQualifier: 'DocumentHeaderData',
+    label: 'Number'
+  },
+
+  {
+    id:'Details',
+    type: #FIELDGROUP_REFERENCE,
+    parentId: 'HeaderInfo',
+    purpose: #STANDARD,
+    targetQualifier: 'DetailsData',
+    label: 'Type & Date'
+  },
+
+  {
+    id: 'Creator',
+    type: #FIELDGROUP_REFERENCE,
+    parentId: 'HeaderInfo',
+    purpose: #STANDARD,
+    targetQualifier: 'CreatorID',
+    label: 'Creator & Transaction'
+  },
+
+  // Showing the items data
+   {
+      id:'POLineItems',
+      type: #LINEITEM_REFERENCE,
+      purpose: #STANDARD,
+      label: 'PO Line Items',
+      targetElement: '_items'
+   }
+
+]
+
+  //    @ui.lineItem: [{ position: 10, label: '' }]
+  //    purchase_uuid;
+  @Search.defaultSearchElement: true
+  @UI.lineItem: [{ position: 10, label: 'PO Number' }]
+  po_num;
+  @UI.lineItem: [{ position: 20, label: 'Description' }]
+  po_desc;
+  @UI.lineItem: [{ position: 30, label: 'Priority' }]
+  po_priority;
+  @UI.lineItem: [{ position: 40, label: 'Company COde' }]
+  compcode;
+  @UI.lineItem: [{ position: 50, label: 'Price' }]
+  totalprice;
+  @UI.lineItem: [{ position: 60, label: 'Currency' }]
+  currency;
+  @UI.lineItem: [{ position: 70, label: 'Created By' }]
+  created_by;
+  @UI.lineItem: [{ position: 80, label: 'Created Time' }]
+  createddt_time;
+  @UI.lineItem: [{ position: 90, label: 'Changed Date & Time' }]
+  changeddt_time;
+  @UI.lineItem: [{ position: 100, label: 'Last Changed Date/Time' }]
+  lastchngdttm;
+  /* Associations */
+  //    _items;
+
+}

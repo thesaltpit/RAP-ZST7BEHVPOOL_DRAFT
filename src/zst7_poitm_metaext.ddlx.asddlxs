@@ -1,0 +1,28 @@
+@Metadata.layer: #CORE
+
+@Search.searchable: true
+annotate view ZST7_POITM_ROOT with
+{
+
+  //    item_uuid;
+  //    parent_uuid;
+  @Search.defaultSearchElement: true
+  @UI.lineItem: [{ position: 10, label: 'Text' }]
+  short_txt;
+  @UI.lineItem: [{ position: 20, label: 'Price' }]
+  price;
+  @UI.lineItem: [{ position: 30, label: 'Currency' }]
+  currency;
+  @UI.lineItem: [{ position: 40, label: 'Quantity' }]
+  quanty;
+  @UI.lineItem: [{ position: 50, label: 'UoM' }]
+  unit;
+  @UI.lineItem: [{ position: 60, label: 'Changed Date/Time' }]
+  changed_dt_time;
+  @UI.lineItem: [{ position: 70, label: 'Local changed date/time' }]
+  local_chg_dt_time;
+
+  /* Associations */
+  //    _header;
+
+}

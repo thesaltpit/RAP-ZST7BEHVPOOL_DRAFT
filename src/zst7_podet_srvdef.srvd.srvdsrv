@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for po details'
+define service ZST7_PODET_SRVDEF {
+  expose ZST7_POHDR_ROOT;
+  expose ZST7_POITM_ROOT;
+}

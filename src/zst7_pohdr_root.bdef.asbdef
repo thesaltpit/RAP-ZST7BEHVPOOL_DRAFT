@@ -1,0 +1,37 @@
+managed implementation in class zst7_zbp_st7_pohdr_root unique;  //behaviour pool
+
+with draft;
+
+define behavior for ZST7_POHDR_ROOT //alias poheader   //behaviour definition
+persistent table zst7_po_hdr
+draft table zst7_po_draft   //draft table will contain fields of header table + some additional fields
+lock master
+total etag changeddt_time
+//authorization master ( instance )
+etag master lastchngdttm                 //used for optimistic locking
+{
+//The below line is neccessary to tell the system to generate it's own GUID
+//else it will create one with 00000000 in table zst7_po_draft everytime and as
+//it find the same value existing there it will throw an error
+  field ( numbering : managed, readonly ) purchase_uuid;
+  field ( readonly ) po_num;
+  create;
+  update;
+  delete;
+  association _items { create; with draft; }
+}
+
+define behavior for ZST7_POITM_ROOT //alias poitems    //behaviour definition for child
+persistent table zst7_po_itm
+draft table zst7_poitm_draft
+lock dependent by _header
+//authorization dependent by _header
+etag master changed_dt_time
+{
+  field ( readonly ) parent_uuid;
+  field ( numbering : managed, readonly ) item_uuid;
+  update;
+  delete;
+
+  association _header{with draft;}
+}
